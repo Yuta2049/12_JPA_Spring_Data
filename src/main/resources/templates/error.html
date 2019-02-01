@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<body xmlns:th="http://www.thymeleaf.org">
+<!-- Page Content -->
+<div class="container">
+
+    <div>
+        <div>
+            <h1 class="page-header">Страница ошибки
+                <!--<small>exception handler</small>-->
+            </h1>
+            <ol>
+                <li><a href="index.html">Home</a>
+                </li>
+                <li class="active">Exception Handler</li>
+            </ol>
+        </div>
+    </div>
+    <!-- /.row -->
+
+    <!-- Content Row -->
+    <div>
+
+        <div class="col-lg-12">
+            <p>This is message from ExceptionHandler:</p>
+            <th:b>${exceptionMsg}</th:b>
+        </div>
+
+    </div>
+    <!-- /.row -->
+
+    <hr>
+
+</div>
+<!-- /.container -->
+</body>
