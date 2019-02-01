@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 //@Component
 @Entity
-@Table(name = "Product", schema = "onlinestorerd", catalog = "")
+@Table(name = "product", schema = "onlinestorerd", catalog = "")
 public class Product {
 
     private static long maxId;
@@ -18,8 +18,14 @@ public class Product {
     @Column(name = "name")
     private String name;
 
-//    @Column(name = "Categories_idCategories")
-    private int category;
+    //@Access(AccessType.FIELD)
+    //@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    //@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    //@Column(name = "Categories_idCategories")
+    //@OneToMany
+    @JoinColumn(name="category_id")
+    private Category category;
 
     @Column(name = "price")
     private double price;
@@ -77,12 +83,12 @@ public class Product {
         this.price = price;
     }
 
-    public int getCategory() {
-        //return category;
-        return 1;
+    public Category getCategory() {
+        return category;
+        //return 1;
     }
 
-    public void setCategory(int category) {
+    public void setCategory(Category category) {
         this.category = category;
     }
 

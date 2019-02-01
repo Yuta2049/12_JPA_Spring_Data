@@ -111,7 +111,8 @@
 
         <ul class="products">
 
-            <li class="product" th:each="product : ${products}" th:if="${category.id==product.category}"
+            <!--<li class="product" th:each="product : ${products}" th:if="${category.id==product.category}"-->
+            <li class="product" th:each="product : ${products}" th:if="${category==product.category}"
                 th:id="@{'a'+${product.id}}">
 
                 <!--  Кнопки админа -->

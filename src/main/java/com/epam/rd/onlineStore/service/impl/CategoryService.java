@@ -11,12 +11,10 @@ import java.util.List;
 public class CategoryService {
 
     @Autowired
-    private CategoryDAO productDAO = new CategoryDAO();
-
-    public CategoryService() {}
+    private CategoryDAO categoryDAO;
 
     public List<Category> findAll() {
-        return productDAO.findAll();
+        return categoryDAO.findAll();
     }
 
 }

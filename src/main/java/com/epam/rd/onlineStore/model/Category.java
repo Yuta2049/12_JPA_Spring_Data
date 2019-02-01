@@ -1,11 +1,23 @@
 package com.epam.rd.onlineStore.model;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "category", schema = "onlinestorerd", catalog = "")
 public class Category {
 
-    private long id;
+    @Id
+    @GeneratedValue
+    @Column(name = "id")
+    private int id;
+
+    @Column(name = "name")
     private String name;
 
-    public Category(long id, String name) {
+    public Category() {
+    }
+
+    public Category(int id, String name) {
         this.id = id;
         this.name = name;
     }
@@ -14,7 +26,7 @@ public class Category {
         return id;
     }
 
-    public void setId(long id) {
+    public void setId(int id) {
         this.id = id;
     }
 
