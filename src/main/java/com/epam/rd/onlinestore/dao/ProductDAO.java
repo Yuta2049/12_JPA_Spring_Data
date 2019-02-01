@@ -1,16 +1,12 @@
-package com.epam.rd.onlineStore.dao;
+package com.epam.rd.onlinestore.dao;
 
-import com.epam.rd.onlineStore.model.Product;
+import com.epam.rd.onlinestore.model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import javax.annotation.PostConstruct;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Repository
-//public class ProductDAO {
 public interface ProductDAO extends JpaRepository<Product, Long> {
 
     List<Product> findAll();

@@ -1,7 +1,7 @@
-package com.epam.rd.onlineStore.service.impl;
+package com.epam.rd.onlinestore.service.impl;
 
-import com.epam.rd.onlineStore.model.MyUserPrincipal;
-import com.epam.rd.onlineStore.model.User;
+import com.epam.rd.onlinestore.model.MyUserPrincipal;
+import com.epam.rd.onlinestore.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -16,7 +16,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userService.findUserByUsername(username);
+        User user = userService.findByUsername(username);
         if (user == null) {
             throw new UsernameNotFoundException(username);
         }

@@ -1,8 +1,8 @@
-package com.epam.rd.onlineStore.service.impl;
+package com.epam.rd.onlinestore.service.impl;
 
-import com.epam.rd.onlineStore.dao.UserDAO;
-import com.epam.rd.onlineStore.model.User;
-import com.epam.rd.onlineStore.service.IUserService;
+import com.epam.rd.onlinestore.dao.UserDAO;
+import com.epam.rd.onlinestore.model.User;
+import com.epam.rd.onlinestore.service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,14 +22,13 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public User findByLoginAndPassword(String login, String password) {
+    public User findByUsernameAndPassword(String login, String password) {
         return userDAO.findByUsernameAndPassword(login, password);
     }
 
     @Override
-    public User findUserByUsername(String username) {
-        return userDAO.findUserByUsername(username);
+    public User findByUsername(String username) {
+        return userDAO.findByUsername(username);
     }
-
 
 }

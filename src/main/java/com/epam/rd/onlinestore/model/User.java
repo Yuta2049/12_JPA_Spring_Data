@@ -1,15 +1,31 @@
-package com.epam.rd.onlineStore.model;
+package com.epam.rd.onlinestore.model;
 
+import javax.persistence.*;
 import java.util.*;
 
-
+@Entity
 public class User {
 
+    @Id
     private long id;
+
     private String username;
+
+    @Column(name = "passwordHash")
     private String password;
 
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "userRoles",
+            //foreign key for EmployeeEntity in employee_car table
+            //joinColumns = @JoinColumn(name = "employee_id"),
+            joinColumns = @JoinColumn(name = "user_id"),
+            //foreign key for other side - EmployeeEntity in employee_car table
+            //inverseJoinColumns = @JoinColumn(name = "car_id"))
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Privilege> privileges;
+
+    public User() {
+    }
 
     public User(long id, String username, String password, Set<Privilege> privileges) {
         this.id = id;

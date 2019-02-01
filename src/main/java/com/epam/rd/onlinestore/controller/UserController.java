@@ -1,4 +1,4 @@
-package com.epam.rd.onlineStore.controller;
+package com.epam.rd.onlinestore.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

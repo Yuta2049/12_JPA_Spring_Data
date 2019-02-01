@@ -1,9 +1,14 @@
-package com.epam.rd.onlineStore.model;
+package com.epam.rd.onlinestore.model;
 
-import org.springframework.security.core.GrantedAuthority;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "role", schema = "onlinestorerd", catalog = "")
 public class Privilege {
 
+    @Id
     private long id;
 
     private String name;

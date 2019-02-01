@@ -1,8 +1,8 @@
-package com.epam.rd.onlineStore.service.impl;
+package com.epam.rd.onlinestore.service.impl;
 
-import com.epam.rd.onlineStore.dao.ProductDAO;
-import com.epam.rd.onlineStore.model.Product;
-import com.epam.rd.onlineStore.service.IProductService;
+import com.epam.rd.onlinestore.dao.ProductDAO;
+import com.epam.rd.onlinestore.model.Product;
+import com.epam.rd.onlinestore.service.IProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

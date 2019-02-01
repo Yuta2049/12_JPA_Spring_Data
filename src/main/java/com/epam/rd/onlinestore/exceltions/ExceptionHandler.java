@@ -1,4 +1,4 @@
-package com.epam.rd.onlineStore.exceltions;
+package com.epam.rd.onlinestore.exceltions;
 
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerExceptionResolver;

@@ -1,6 +1,6 @@
-package com.epam.rd.onlineStore.service;
+package com.epam.rd.onlinestore.service;
 
-import com.epam.rd.onlineStore.model.Product;
+import com.epam.rd.onlinestore.model.Product;
 
 import java.util.List;
 

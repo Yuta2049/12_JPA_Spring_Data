@@ -1,6 +1,4 @@
-package com.epam.rd.onlineStore.model;
-
-import org.springframework.stereotype.Component;
+package com.epam.rd.onlinestore.model;
 
 import javax.persistence.*;
 

@@ -1,13 +1,9 @@
-package com.epam.rd.onlineStore.controller;
+package com.epam.rd.onlinestore.controller;
 
-import com.epam.rd.onlineStore.model.Product;
-import com.epam.rd.onlineStore.service.IProductService;
-import com.epam.rd.onlineStore.service.impl.CategoryService;
-import com.epam.rd.onlineStore.service.impl.ProductService;
+import com.epam.rd.onlinestore.service.IProductService;
+import com.epam.rd.onlinestore.service.impl.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 
 @RestController

@@ -1,4 +1,4 @@
-package com.epam.rd.onlineStore.model;
+package com.epam.rd.onlinestore.model;
 
 import javax.persistence.*;
 

@@ -1,8 +1,7 @@
-package com.epam.rd.onlineStore.config;
+package com.epam.rd.onlinestore.config;
 
-import com.epam.rd.onlineStore.service.impl.UserDetailServiceImpl;
+import com.epam.rd.onlinestore.service.impl.UserDetailServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
