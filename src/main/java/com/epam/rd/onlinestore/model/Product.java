@@ -19,9 +19,9 @@ public class Product {
     //@Access(AccessType.FIELD)
     //@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     //@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    //@OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     //@Column(name = "Categories_idCategories")
-    //@OneToMany
+    @ManyToOne
     @JoinColumn(name="category_id")
     private Category category;
 

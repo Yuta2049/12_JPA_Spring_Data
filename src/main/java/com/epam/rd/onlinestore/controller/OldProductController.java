@@ -2,9 +2,8 @@ package com.epam.rd.onlinestore.controller;
 
 import com.epam.rd.onlinestore.model.Category;
 import com.epam.rd.onlinestore.model.Product;
-import com.epam.rd.onlinestore.service.IProductService;
+import com.epam.rd.onlinestore.service.ProductService;
 import com.epam.rd.onlinestore.service.impl.CategoryService;
-import com.epam.rd.onlinestore.service.impl.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +14,7 @@ import java.util.Map;
 public class OldProductController {
 
     @Autowired
-    private IProductService productService = new ProductService();
+    private ProductService productService;
 
     @Autowired
     private CategoryService categoryService = new CategoryService();

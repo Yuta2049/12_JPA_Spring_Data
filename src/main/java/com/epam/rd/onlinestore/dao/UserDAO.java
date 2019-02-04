@@ -44,6 +44,7 @@ public interface UserDAO extends JpaRepository<User, Long> {
 
     public User findByUsername(String username);
 
+
 //    public User findByUsernameAndPassword(String username, String password) {
 //        return userList.stream().filter(o -> o.getUsername().equals(username) && o.getPassword().equals(password)).findFirst().orElse(null);
 //    }

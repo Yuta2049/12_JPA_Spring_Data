@@ -116,11 +116,13 @@
                 th:id="@{'a'+${product.id}}">
 
                 <!--  Кнопки админа -->
-                <input sec:authorize="hasRole('ROLE_ADMIN')" type="image" src="/images/pencil.png"
+                <!--<input sec:authorize="hasRole('ROLE_ADMIN')" type="image" src="/images/pencil.png"-->
+                <input type="image" src="/images/pencil.png"
                        th:data-product-id="${product.id}"
                        class="openCloseAddProduct buttonProductEdit">
 
-                <input sec:authorize="hasRole('ROLE_ADMIN')" type="image" class="buttonProductDelete"
+                <!--<input sec:authorize="hasRole('ROLE_ADMIN')" type="image" class="buttonProductDelete"-->
+                <input type="image" class="buttonProductDelete"
                        src="/images/delete.png"
                        th:data-product-id="${product.id}">
                 <!--  Кнопки админа (КОНЕЦ) -->
