@@ -40,7 +40,7 @@ public interface UserDAO extends JpaRepository<User, Long> {
 //        return userList;
 //    }
 
-    public User findByUsernameAndPassword(String username, String password);
+    public User findByUsernameAndPasswordhash(String username, String password);
 
     public User findByUsername(String username);
 

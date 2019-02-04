@@ -1,5 +1,8 @@
 package com.epam.rd.onlinestore.model;
 
+
+import org.springframework.transaction.annotation.Transactional;
+
 import javax.persistence.*;
 import java.util.*;
 
@@ -11,26 +14,20 @@ public class User {
 
     private String username;
 
-    @Column(name = "passwordHash")
-    private String password;
+//    @Column(name = "\"passwordHash\"")
+    @Column(name = "passwordhash")
+    private String passwordhash;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "userRoles",
-            //foreign key for EmployeeEntity in employee_car table
-            //joinColumns = @JoinColumn(name = "employee_id"),
-            joinColumns = @JoinColumn(name = "user_id"),
-            //foreign key for other side - EmployeeEntity in employee_car table
-            //inverseJoinColumns = @JoinColumn(name = "car_id"))
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Privilege> privileges;
+    @ElementCollection(targetClass=Privilege.class)
+    private Set<Privilege> privileges = new HashSet<>();
 
     public User() {
     }
 
-    public User(long id, String username, String password, Set<Privilege> privileges) {
+    public User(long id, String username, String passwordHash, Set<Privilege> privileges) {
         this.id = id;
         this.username = username;
-        this.password = password;
+        this.passwordhash = passwordhash;
         this.privileges = privileges;
     }
 
@@ -50,14 +47,25 @@ public class User {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPasswordHash() {
+        return passwordhash;
     }
 
     public void setPassword(String password) {
-        this.password = password;
+        this.passwordhash = password;
     }
 
+
+    //@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @ManyToMany
+    @JoinTable(name = "user_roles",
+            //foreign key for EmployeeEntity in employee_car table
+            //joinColumns = @JoinColumn(name = "employee_id"),
+            joinColumns = @JoinColumn(name = "user_id"),
+            //foreign key for other side - EmployeeEntity in employee_car table
+            //inverseJoinColumns = @JoinColumn(name = "car_id"))
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @Transactional
     public Set<Privilege> getPrivileges() {
         return privileges;
     }
