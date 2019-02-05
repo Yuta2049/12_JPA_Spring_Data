@@ -21,6 +21,7 @@ public class ProductRestController {
     public Product processCreationForm(@RequestBody Product product) {
         //return this.productService.add(product);
         return this.productService.save(product);
+        //return this.productService.updateProduct(product);
     }
 
     @GetMapping(value = "/products/{productId}/edit")
@@ -31,6 +32,7 @@ public class ProductRestController {
     @PutMapping("/products/{productId}/edit")
     public Product editProductSave(@RequestBody Product product) {
         return this.productService.save(product);
+        //return this.productService.updateProduct(product);
     }
 
 

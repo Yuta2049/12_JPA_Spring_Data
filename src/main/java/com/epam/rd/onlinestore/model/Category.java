@@ -1,10 +1,11 @@
 package com.epam.rd.onlinestore.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "category", schema = "onlinestorerd", catalog = "")
-public class Category {
+public class Category implements Serializable {
 
     @Id
     @GeneratedValue

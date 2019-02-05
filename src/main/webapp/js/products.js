@@ -12,7 +12,9 @@ $('.buttonProductEdit').on('click', function() {
                 /*$("#ProductWindow").load("/fragments/createOrUpdateProductForm");*/
                 $("#editProductId").val(data.id);
                 $("#editProductName").val(data.name);
-                $("#editProductCategory").val(data.category);
+                //$("#editProductCategory").val(data.category);
+                $("#editProductCategoryId").val(data.category.id);
+                $("#editProductCategoryName").val(data.category.name);
                 $("#editProductPrice").val(data.price);
                 $("#editProductImage").val(data.image);
             }
@@ -27,9 +29,14 @@ $('#editProductSave').on('click', function() {
 
     var productId = $("#editProductId").val();
     var productName = $("#editProductName").val();
-    var productCategory = $("#editProductCategory").val();
+//    var productCategory = $("#editProductCategory").val();
+    var productCategoryId = $("#editProductCategoryId").val();
+    var productCategoryName = $("#editProductCategoryName").val();
     var productPrice = $("#editProductPrice").val();
     var productImage = $("#editProductImage").val();
+
+    var productCategory = {id : productCategoryId,
+                    name : productCategoryName}
 
     var product = {id : productId,
                   name : productName,

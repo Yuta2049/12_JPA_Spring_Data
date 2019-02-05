@@ -1,11 +1,12 @@
 package com.epam.rd.onlinestore.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 //@Component
 @Entity
 @Table(name = "product", schema = "onlinestorerd", catalog = "")
-public class Product {
+public class Product implements Serializable {
 
     private static long maxId;
 
