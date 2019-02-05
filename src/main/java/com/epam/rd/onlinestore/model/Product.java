@@ -11,8 +11,7 @@ public class Product implements Serializable {
     //private static long maxId;
 
     @Id
-    //@GeneratedValue
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long id;
 
     @Column(name = "name")
