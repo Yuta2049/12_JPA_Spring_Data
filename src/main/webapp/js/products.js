@@ -79,9 +79,14 @@ $('#newProductSave').on('click', function() {
 
     var productId = $("#editProductId").val();
     var productName = $("#editProductName").val();
-    var productCategory = $("#editProductCategory").val();
+    //var productCategory = $("#editProductCategory").val();
+    var productCategoryId = $("#editProductCategoryId").val();
+    var productCategoryName = $("#editProductCategoryName").val();
     var productPrice = $("#editProductPrice").val();
     var productImage = $("#editProductImage").val();
+
+    var productCategory = {id : productCategoryId,
+                    name : productCategoryName}
 
     var product = {id : productId,
                   name : productName,

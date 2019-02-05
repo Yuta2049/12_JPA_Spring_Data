@@ -8,10 +8,11 @@ import java.io.Serializable;
 @Table(name = "product", schema = "onlinestorerd", catalog = "")
 public class Product implements Serializable {
 
-    private static long maxId;
+    //private static long maxId;
 
     @Id
-    @GeneratedValue
+    //@GeneratedValue
+    @GeneratedValue(strategy=GenerationType.AUTO)
     private long id;
 
     @Column(name = "name")
@@ -58,13 +59,13 @@ public class Product implements Serializable {
         this.id = id;
     }
 
-    public static long getMaxId() {
-        return maxId;
-    }
-
-    public static void setMaxId(long maxId) {
-        Product.maxId = maxId;
-    }
+//    public static long getMaxId() {
+//        return maxId;
+//    }
+//
+//    public static void setMaxId(long maxId) {
+//        Product.maxId = maxId;
+//    }
 
     public String getName() {
         return name;

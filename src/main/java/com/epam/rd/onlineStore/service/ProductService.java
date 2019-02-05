@@ -11,6 +11,7 @@ public interface ProductService {
     Product findById(long id);
 
     Product save(Product product);
+    //Product updateProduct(Product product);
 
     boolean deleteById(long id);
 
