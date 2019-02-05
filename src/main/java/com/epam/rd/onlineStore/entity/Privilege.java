@@ -1,4 +1,4 @@
-package com.epam.rd.onlinestore.model;
+package com.epam.rd.onlinestore.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;

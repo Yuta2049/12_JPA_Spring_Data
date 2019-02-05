@@ -1,7 +1,5 @@
-package com.epam.rd.onlinestore.model;
+package com.epam.rd.onlinestore.entity;
 
-
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.*;
 import java.util.*;

@@ -1,17 +1,10 @@
 package com.epam.rd.onlinestore.dao;
 
-import com.epam.rd.onlinestore.model.Category;
-import com.epam.rd.onlinestore.model.Privilege;
-import com.epam.rd.onlinestore.model.User;
+import com.epam.rd.onlinestore.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Repository;
 
-import javax.annotation.PostConstruct;
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Repository
 public interface UserDAO extends JpaRepository<User, Long> {

@@ -1,4 +1,4 @@
-package com.epam.rd.onlinestore.model;
+package com.epam.rd.onlinestore.entity;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

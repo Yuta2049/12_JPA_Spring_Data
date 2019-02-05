@@ -1,6 +1,6 @@
 package com.epam.rd.onlinestore.controller;
 
-import com.epam.rd.onlinestore.model.Product;
+import com.epam.rd.onlinestore.entity.Product;
 import com.epam.rd.onlinestore.service.ProductService;
 import com.epam.rd.onlinestore.service.impl.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;

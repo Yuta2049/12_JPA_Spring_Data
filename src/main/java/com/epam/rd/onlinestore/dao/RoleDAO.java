@@ -6,8 +6,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface RoleDAO extends JpaRepository<com.epam.rd.onlinestore.model.Privilege, Long> {
+public interface RoleDAO extends JpaRepository<com.epam.rd.onlinestore.entity.Privilege, Long> {
 
-    List<com.epam.rd.onlinestore.model.Privilege> findAll();
+    List<com.epam.rd.onlinestore.entity.Privilege> findAll();
 
 }

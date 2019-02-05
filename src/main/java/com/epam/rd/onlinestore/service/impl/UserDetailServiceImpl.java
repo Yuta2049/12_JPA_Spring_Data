@@ -1,10 +1,9 @@
 package com.epam.rd.onlinestore.service.impl;
 
 import com.epam.rd.onlinestore.dao.UserDAO;
-import com.epam.rd.onlinestore.model.MyUserPrincipal;
-import com.epam.rd.onlinestore.model.Privilege;
-import com.epam.rd.onlinestore.model.User;
-import com.epam.rd.onlinestore.service.UserService;
+import com.epam.rd.onlinestore.entity.MyUserPrincipal;
+import com.epam.rd.onlinestore.entity.Privilege;
+import com.epam.rd.onlinestore.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

@@ -1,6 +1,6 @@
 package com.epam.rd.onlinestore.dao;
 
-import com.epam.rd.onlinestore.model.Category;
+import com.epam.rd.onlinestore.entity.Category;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

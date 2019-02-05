@@ -1,6 +1,6 @@
 package com.epam.rd.onlinestore.service;
 
-import com.epam.rd.onlinestore.model.User;
+import com.epam.rd.onlinestore.entity.User;
 
 import java.util.List;
 
