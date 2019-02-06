@@ -100,6 +100,15 @@
       </dependency>
 
 
+      <!--&lt;!&ndash; https://mvnrepository.com/artifact/org.javassist/javassist &ndash;&gt;-->
+      <!--<dependency>-->
+          <!--<groupId>org.javassist</groupId>-->
+          <!--<artifactId>javassist</artifactId>-->
+          <!--&lt;!&ndash;<version>3.24.1-GA</version>&ndash;&gt;-->
+      <!--</dependency>-->
+
+
+
       <!--&lt;!&ndash; Provided &ndash;&gt;-->
       <!--<dependency>-->
           <!--<groupId>org.springframework.boot</groupId>-->

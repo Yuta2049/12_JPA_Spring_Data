@@ -5,6 +5,7 @@ import javax.persistence.*;
 import java.util.*;
 
 @Entity
+//@IdClass(Cart.class)
 public class User {
 
     @Id
@@ -29,7 +30,7 @@ public class User {
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
     @JoinTable(
-            name = "user_roles",
+            name = "users_roles",
             joinColumns = @JoinColumn(
                     name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(
