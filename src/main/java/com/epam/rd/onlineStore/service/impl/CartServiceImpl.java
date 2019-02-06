@@ -14,7 +14,18 @@ public class CartServiceImpl implements CartService {
 
     @Override
     public Cart findByUserId(long userId) {
-        //return null;
         return cartDAO.findByUserId(userId);
     }
+
+    @Override
+    public Cart findById(long id) {
+        return cartDAO.findById(id);
+    }
+
+    @Override
+    public Cart addProductToCart(long idCart, product productId) {
+        return cartDAO.save(Cart);
+    }
+
+
 }

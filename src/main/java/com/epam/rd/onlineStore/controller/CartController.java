@@ -13,11 +13,20 @@ public class CartController {
     @Autowired
     private CartService cartService;
 
-    @GetMapping(value = "/cart/{userId}")
-    public Cart showCart(@PathVariable("userId") long userId) {
-        return this.cartService.findByUserId(userId);
+//    @GetMapping(value = "/cart/{userId}")
+//    public Cart showCart(@PathVariable("userId") long userId) {
+//        return this.cartService.findByUserId(userId);
+//    }
+
+    @GetMapping(value = "/cart/{id}")
+    public Cart showCart(@PathVariable("id") long id) {
+        return this.cartService.findById(id);
     }
 
 
+    @GetMapping(value = "/cart/{id}/add/{ProductId}")
+    public Cart addProductToCart(@PathVariable("id") long id, @PathVariable("productId") long productId) {
+        return this.cartService.addProductToCart(id, productId);
+    }
 
 }
