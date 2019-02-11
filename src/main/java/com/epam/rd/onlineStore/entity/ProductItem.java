@@ -8,17 +8,11 @@ import java.io.Serializable;
 //@IdClass(Cart.class)
 //@Embeddable
 //@IdClass(ProductItem.PK.class)
+@IdClass(ProductItemPK.class)
 public class ProductItem implements Serializable {
 
-    public static class PK implements Serializable  {
-        private Cart cart;
-        private Product product;
-    }
-//
-//    //@ManyToMany
     @EmbeddedId
     //@Id
-    //@ManyToMany
     @ManyToOne
     @JoinColumn(name="product_id")
     private Product product;
@@ -26,28 +20,24 @@ public class ProductItem implements Serializable {
 
     private int quantity;
 
-//    //@Id
-//    @EmbeddedId
-//    @ManyToOne
-//    @JoinColumn(name="cart_id")
-//    //@JoinColumn(name="cart_id", referencedColumnName="id")
-////    //@JoinColumn(name="user_id")
-//    //@JoinColumn(name="user_id", referencedColumnName="cart_user_id")
-//    //@Column(name="cart_user_id")
-//    private Cart cart;
-////
+
+    //@Id
+    @EmbeddedId
+    @ManyToOne
+    @JoinColumn(name="cart_id")
+    private Cart cart;
 
 
     public ProductItem() {
     }
 
-//    public Cart getCart() {
-//        return cart;
-//    }
-//
-//    public void setCart(Cart cart) {
-//        this.cart = cart;
-//    }
+    public ProductItem(Cart cart, Product product, int quantity) {
+        this.cart = cart;
+        this.product = product;
+        this.quantity = quantity;
+
+    }
+
 
     public Product getProduct() {
         return product;
@@ -63,5 +53,14 @@ public class ProductItem implements Serializable {
 
     public void setQuantity(int quantity) {
         this.quantity = quantity;
+    }
+
+
+    public Cart getCart() {
+        return cart;
+    }
+
+    public void setCart(Cart cart) {
+        this.cart = cart;
     }
 }

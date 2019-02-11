@@ -1,8 +1,7 @@
 package com.epam.rd.onlinestore.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "role", schema = "onlinestorerd", catalog = "")
@@ -12,6 +11,13 @@ public class Privilege {
     private long id;
 
     private String name;
+
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    @JoinTable(name = "users_roles",
+//            joinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"),
+//            inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"))
+//    private Set<User> users;// = new HashSet<>();
+
 
     public Privilege() {
     }

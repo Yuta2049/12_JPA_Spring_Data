@@ -24,8 +24,10 @@ public class CartController {
     }
 
 
-    @GetMapping(value = "/cart/{id}/add/{ProductId}")
+    @GetMapping(value = "/cart/{id}/add/{productId}")
     public Cart addProductToCart(@PathVariable("id") long id, @PathVariable("productId") long productId) {
+        System.out.println(id);
+        System.out.println(productId);
         return this.cartService.addProductToCart(id, productId);
     }
 
