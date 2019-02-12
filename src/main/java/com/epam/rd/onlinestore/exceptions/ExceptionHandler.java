@@ -13,6 +13,7 @@ public class ExceptionHandler implements HandlerExceptionResolver {
     @Override
     public ModelAndView resolveException(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, Object o, Exception e) {
         System.out.println("Spring MVC ExceptionHandler handling");
+        System.out.println(e.toString());
         return new ModelAndView("exception", "exceptionMsg", "ExceptionHandler msg: " + e.toString());
     }
 }

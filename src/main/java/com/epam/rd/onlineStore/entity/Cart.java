@@ -1,5 +1,8 @@
 package com.epam.rd.onlinestore.entity;
 
+
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -16,7 +19,7 @@ public class Cart implements Serializable {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private long id;
+    private Long id;
 
 
     @OneToOne
@@ -40,10 +43,10 @@ public class Cart implements Serializable {
     //@Column(name="cart_user_id", table="cartProductList")
     //@Column(name="user_id")
     //@OneToMany
-    //@OneToMany(mappedBy="cart")
+    //@OneToMany(fetch = FetchType.EAGER, mappedBy="cart")
     //@JoinColumn(name="user_id", referencedColumnName="cart_user_id")
-    @OneToMany
-    @JoinColumn(name = "cart_id", referencedColumnName = "id")
+//    @OneToMany
+//    @JoinColumn(name = "cart_id", referencedColumnName = "id")
     //@OneToMany(mappedBy = "cart", cascade = ALL)
     //@JoinColumn(name = "user_id", referencedColumnName = "cart_user_id")
     //@ManyToMany(cascade = CascadeType.ALL)
@@ -51,6 +54,8 @@ public class Cart implements Serializable {
 //    @JoinTable(name = "cart_product_list",
 //            joinColumns = @JoinColumn(name = "cart_user_id", referencedColumnName = "user_id"))
     //@JoinColumn(name = "cart_user_id", referencedColumnName = "user_id")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "cart",  cascade = {CascadeType.ALL, CascadeType.PERSIST})
+    //@Cascade(CascadeType.SAVE_UPDATE)
     private List<ProductItem> productItemList;
 
     public Cart() {
@@ -64,6 +69,7 @@ public class Cart implements Serializable {
         this.user = user;
     }
 
+    //@OneToMany(cascade=ALL, mappedBy="cart")
     public List<ProductItem> getProductItemList() {
         return productItemList;
     }
