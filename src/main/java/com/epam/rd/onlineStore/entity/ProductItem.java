@@ -1,5 +1,8 @@
 package com.epam.rd.onlinestore.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.springframework.data.annotation.Transient;
+
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -23,8 +26,11 @@ public class ProductItem implements Serializable {
 
     //@Id
     @EmbeddedId
-    @ManyToOne
-    @JoinColumn(name="cart_id")
+    //@ManyToOne
+//    @JoinColumn(name="cart_id")
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(name = "cart_id", nullable = false)
+    @JsonIgnore
     private Cart cart;
 
 
@@ -55,7 +61,8 @@ public class ProductItem implements Serializable {
         this.quantity = quantity;
     }
 
-
+//    @ManyToOne
+//    @JoinColumn(name="cart_id", nullable=false)
     public Cart getCart() {
         return cart;
     }

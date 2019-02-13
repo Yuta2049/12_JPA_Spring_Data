@@ -2,11 +2,14 @@ package com.epam.rd.onlinestore.entity;
 
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.*;
 
 @Entity
 //@IdClass(Cart.class)
-public class User {
+//@Access(AccessType.FIELD)
+@Table(name = "user",  schema = "onlinestorerd", catalog = "")
+public class User implements Serializable {
 
     @Id
     private long id;
@@ -18,25 +21,12 @@ public class User {
     @Column(name = "passwordhash", nullable = false, length = 60)
     private String passwordhash;
 
-    @ElementCollection(targetClass=Privilege.class)
-//    @ManyToMany(fetch = FetchType.EAGER)
-//    @JoinTable(name = "user_roles",
-//            //foreign key for EmployeeEntity in employee_car table
-//            //joinColumns = @JoinColumn(name = "employee_id"),
-//            joinColumns = @JoinColumn(name = "user_id"),
-//            //foreign key for other side - EmployeeEntity in employee_car table
-//            //inverseJoinColumns = @JoinColumn(name = "car_id"))
-//            inverseJoinColumns = @JoinColumn(name = "role_id"))
-
-//    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-//    @JoinTable(
-//            name = "users_roles",
-//            joinColumns = @JoinColumn(
-//                    name = "user_id", referencedColumnName = "id"),
-//            inverseJoinColumns = @JoinColumn(
-//                    name = "role_id", referencedColumnName = "id"))
-
-    private Set<Privilege> privileges = new HashSet<Privilege>(0);
+////    @ElementCollection(targetClass=Privilege.class)
+    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
+    @JoinTable(name="users_roles",
+        joinColumns = @JoinColumn(name="user_id", referencedColumnName="id"),
+        inverseJoinColumns = @JoinColumn(name="role_id", referencedColumnName="id"))
+    private Set<Privilege> privileges;// = new HashSet<Privilege>(0);
 
     public User() {
     }
@@ -84,14 +74,16 @@ public class User {
 //            inverseJoinColumns = @JoinColumn(name = "role_id"))
 //    @Transactional
     //@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-@ManyToMany(cascade = CascadeType.ALL)
-//    @JoinTable(name = "users_roles",
-//            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-//            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
-@JoinTable(name = "users_roles",
-        joinColumns = @JoinColumn(name = "user_id"),
-        inverseJoinColumns = @JoinColumn(name = "role_id"))
-public Set<Privilege> getPrivileges() {
+//@ManyToMany(cascade = CascadeType.ALL)
+////    @JoinTable(name = "users_roles",
+////            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+////            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+//@JoinTable(name = "users_roles",
+//        joinColumns = @JoinColumn(name = "user_id"),
+//        inverseJoinColumns = @JoinColumn(name = "role_id"))
+//    @ManyToMany //(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+    public Set<Privilege> getPrivileges() {
         return privileges;
     }
 

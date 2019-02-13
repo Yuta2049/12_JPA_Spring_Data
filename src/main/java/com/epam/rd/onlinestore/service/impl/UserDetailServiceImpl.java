@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -29,22 +30,33 @@ public class UserDetailServiceImpl implements UserDetailsService {
     @Override
     @Transactional(readOnly=true)
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-//        User user = userService.findByUsername(username);
-//        if (user == null) {
-//            throw new UsernameNotFoundException(username);
-//        }
-//        return new MyUserPrincipal(user);
-
 
         User user = userDAO.findByUsername(username);
-        if (user == null){
-            throw new UsernameNotFoundException("Invalid username or password.");
+        Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
+        for (Privilege role : user.getPrivileges()){
+            grantedAuthorities.add(new SimpleGrantedAuthority(role.getName()));
+            System.out.println(role.getName());
         }
+        System.out.println("КОЛИЧЕСТВО: "+user.getPrivileges().size());
 
-//        return new org.springframework.security.core.userdetails.User(user.getEmail(),
-//                user.getPassword(),
-//                mapRolesToAuthorities(user.getRoles()));
 
+
+////        User user = userService.findByUsername(username);
+////        if (user == null) {
+////            throw new UsernameNotFoundException(username);
+////        }
+////        return new MyUserPrincipal(user);
+//
+//
+//        User user = userDAO.findByUsername(username);
+//        if (user == null){
+//            throw new UsernameNotFoundException("Invalid username or password.");
+//        }
+//
+////        return new org.springframework.security.core.userdetails.User(user.getEmail(),
+////                user.getPassword(),
+////                mapRolesToAuthorities(user.getRoles()));
+//
         return new MyUserPrincipal(user);
 
         //return user;

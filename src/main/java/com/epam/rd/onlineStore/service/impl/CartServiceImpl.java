@@ -39,7 +39,7 @@ public class CartServiceImpl implements CartService {
 
         Product product = productService.findById(productId);
         Cart cart = findById(idCart);
-        System.out.println(cart);
+        //System.out.println(cart);
         for (ProductItem productItem : cart.getProductItemList()) {
             if (productItem.getProduct().equals(product)) {
                 productItem.setQuantity(productItem.getQuantity()+1);
@@ -49,14 +49,14 @@ public class CartServiceImpl implements CartService {
         ProductItem productItem = new ProductItem(cart, product, 1);
 
 
-        //List<ProductItem> productItemList = cart.getProductItemList();
-        //productItemList.add(productItem);
-        //cart.setProductItemList(productItemList);
+        List<ProductItem> productItemList = cart.getProductItemList();
+        productItemList.add(productItem);
+        cart.setProductItemList(productItemList);
         //cart.getProductItemList().add(productItem);
-        //return cartDAO.save(cart);
-        productItemDAO.save(productItem);       // Чего-то другое возвращать наверное надо
+        return cartDAO.save(cart);
+        //productItemDAO.save(productItem);       // Чего-то другое возвращать наверное надо
         //System.out.println("size: "+cart.getProductItemList().size());
         //System.out.println(productItem.getProduct());
-        return cart;
+        //return cart;
     }
 }
