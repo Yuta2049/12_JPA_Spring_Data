@@ -5,12 +5,14 @@ import com.epam.rd.onlinestore.entity.MyUserPrincipal;
 import com.epam.rd.onlinestore.entity.Privilege;
 import com.epam.rd.onlinestore.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.InternalAuthenticationServiceException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
@@ -28,21 +30,41 @@ public class UserDetailServiceImpl implements UserDetailsService {
 
 
     @Override
-    @Transactional(readOnly=true)
+    //@Transactional(readOnly=true)
+    @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        User user = userDAO.findByUsername(username);
 
-//        Set<Privilege> privileges = userDAO.getUserRolesByUserId(user.getId());
-//        System.out.println("privileges.size = "+privileges.size());
-
-
-        Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-        for (Privilege role : user.getPrivileges()){
-            grantedAuthorities.add(new SimpleGrantedAuthority(role.getName()));
-            System.out.println(role.getName());
+        UserDetails loadedUser;
+        try {
+            User client = userDAO.findByUsername(username);
+            loadedUser = new org.springframework.security.core.userdetails.User(
+                    client.getUsername(), client.getPasswordHash(),
+                    client.getPrivileges());
+        } catch (Exception repositoryProblem) {
+            throw new InternalAuthenticationServiceException(repositoryProblem.getMessage(), repositoryProblem);
         }
-        System.out.println("КОЛИЧЕСТВО: "+user.getPrivileges().size());
+
+        System.out.println("authorities = "+loadedUser.getAuthorities().size());
+
+        return loadedUser;
+        //return new MyUserPrincipal(loadedUser);
+
+//    }
+
+
+//        User user = userDAO.findByUsername(username);
+//
+////        Set<Privilege> privileges = userDAO.getUserRolesByUserId(user.getId());
+////        System.out.println("privileges.size = "+privileges.size());
+//
+//
+//        Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
+//        for (Privilege role : user.getPrivileges()){
+//            grantedAuthorities.add(new SimpleGrantedAuthority(role.getName()));
+//            System.out.println(role.getName());
+//        }
+//        System.out.println("КОЛИЧЕСТВО: "+user.getPrivileges().size());
 
 
 
@@ -62,7 +84,7 @@ public class UserDetailServiceImpl implements UserDetailsService {
 ////                user.getPassword(),
 ////                mapRolesToAuthorities(user.getRoles()));
 //
-        return new MyUserPrincipal(user);
+//        return new MyUserPrincipal(user);
 
         //return user;
     }

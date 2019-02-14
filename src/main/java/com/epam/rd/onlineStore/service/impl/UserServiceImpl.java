@@ -26,13 +26,21 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public User findByUsernameAndPassword(String login, String password) {
         return userDAO.findByUsernameAndPasswordhash(login, password);
     }
 
     @Override
+    @Transactional
     public User findByUsername(String username) {
         return userDAO.findByUsername(username);
+    }
+
+    @Override
+    @Transactional
+    public User findById(long id) {
+        return userDAO.findById(id);
     }
 
 //    //@Query("SELECT u.privileges FROM User u WHERE u.id = :id")

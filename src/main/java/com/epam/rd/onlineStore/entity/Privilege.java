@@ -1,5 +1,7 @@
 package com.epam.rd.onlinestore.entity;
 
+import org.springframework.security.core.GrantedAuthority;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
@@ -7,11 +9,13 @@ import java.util.Set;
 
 @Entity
 @Table(name = "role", schema = "onlinestorerd", catalog = "")
-public class Privilege implements Serializable {
+public class Privilege implements Serializable, GrantedAuthority {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long id;
 
+    @Column(name = "name")
     private String name;
 
 //    @ManyToMany(cascade = CascadeType.ALL)
@@ -19,8 +23,8 @@ public class Privilege implements Serializable {
 //    @JoinTable(name = "users_roles",
 //            joinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"),
 //            inverseJoinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"))
-    @ManyToMany(cascade = {CascadeType.ALL, CascadeType.PERSIST}, fetch = FetchType.EAGER, mappedBy = "privileges")
-    private Set<User> users;// = new HashSet<User>();
+//    @ManyToMany(mappedBy = "privileges")//(cascade = {CascadeType.ALL, CascadeType.PERSIST}, fetch = FetchType.EAGER, mappedBy = "privileges")
+//    private Set<User> users;// = new HashSet<User>();
 
 
     public Privilege() {
@@ -47,13 +51,18 @@ public class Privilege implements Serializable {
         this.name = name;
     }
 
-//    @ManyToMany(fetch = FetchType.EAGER, mappedBy="privileges")
-    //@ManyToMany(mappedBy="privileges")
-    public Set<User> getUsers() {
-        return users;
-    }
+////    @ManyToMany(fetch = FetchType.EAGER, mappedBy="privileges")
+//    //@ManyToMany(mappedBy="privileges")
+//    public Set<User> getUsers() {
+//        return users;
+//    }
 
-    public void setUsers(Set<User> users) {
-        this.users = users;
+    //public void setUsers(Set<User> users) {
+//        this.users = users;
+//    }
+
+    @Override
+    public String getAuthority() {
+        return getName();
     }
 }

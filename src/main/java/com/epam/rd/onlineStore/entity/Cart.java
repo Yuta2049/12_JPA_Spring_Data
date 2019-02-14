@@ -23,38 +23,12 @@ public class Cart implements Serializable {
 
 
     @OneToOne
-    //@Column(name="user_id")
     @JoinColumn(name="user_id")
-    //@Column(name="user_id", )
     private User user;
 
-//    @OneToOne
-//    @JoinColumn(name="user_id")
 
-//    @OneToMany(fetch = FetchType.LAZY,
-//            mappedBy = "cart",
-//            cascade = CascadeType.ALL)
-    //@Column(table = "cartProductList")
-    //@OneToMany
-    //@Column(name="zipcode", table="cartProductList")
-    //@ElementCollection( targetClass = ProductItem.class )
-    //@Column(name="cartUserId", table="cartProductList")
-    //@JoinColumn(name="cart_user_id", referencedColumnName="user_id")
-    //@Column(name="cart_user_id", table="cartProductList")
-    //@Column(name="user_id")
-    //@OneToMany
-    //@OneToMany(fetch = FetchType.EAGER, mappedBy="cart")
-    //@JoinColumn(name="user_id", referencedColumnName="cart_user_id")
-//    @OneToMany
-//    @JoinColumn(name = "cart_id", referencedColumnName = "id")
-    //@OneToMany(mappedBy = "cart", cascade = ALL)
-    //@JoinColumn(name = "user_id", referencedColumnName = "cart_user_id")
-    //@ManyToMany(cascade = CascadeType.ALL)
-    //@OneToMany(cascade = CascadeType.ALL)
-//    @JoinTable(name = "cart_product_list",
-//            joinColumns = @JoinColumn(name = "cart_user_id", referencedColumnName = "user_id"))
-    //@JoinColumn(name = "cart_user_id", referencedColumnName = "user_id")
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "cart",  cascade = {CascadeType.ALL, CascadeType.PERSIST})
+    //@OneToMany(fetch = FetchType.EAGER, mappedBy = "cart",  cascade = {CascadeType.ALL, CascadeType.PERSIST})
+    @OneToMany(mappedBy = "cart",  cascade = {CascadeType.ALL, CascadeType.PERSIST})
     //@Cascade(CascadeType.SAVE_UPDATE)
     private List<ProductItem> productItemList;
 

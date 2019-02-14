@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Set;
@@ -13,8 +15,10 @@ import java.util.Set;
 import static org.hibernate.hql.internal.antlr.HqlTokenTypes.FROM;
 
 @Repository
+@Transactional
 public interface UserDAO extends JpaRepository<User, Long> {
 
+    @Query(value = "select u from User u left join fetch u.privileges p")
     List<User> findAll();
 
 //    private List<User> userList = new ArrayList<>();
@@ -50,12 +54,25 @@ public interface UserDAO extends JpaRepository<User, Long> {
 
     public User findByUsername(String username);
 
+    //public User findOne(long id);
 
 
-//    @Query("SELECT u.roles FROM User u WHERE u.id = :id")
-////    public Set<Privilege> getUserRolesByUserId(@Param("id") long id);
+
+    //@Query(value = "select u from user u left join fetch u.roles where u.id = :id")
+    //@Query(value = "select u from User u where u.id = (:id)")
+    //@Query(value = "select u from User u left join fetch u.privileges p where u.id = (:id)")
+    //@Query(value = "select u from User u left join fetch u.privileges p where u.id = (:id)")
+    //@Query(value = "select u from User u left join fetch u.privileges p where u.id = (:id)")
+    @Query(value = "select u from User u left join fetch u.privileges p where u.id = (:id)")
+    public User findById(@Param("id") long id); //where t.supervisor = e.name
+    //public User findById(long id);
+
+
+
+
+    //@Query("SELECT u.roles FROM User u WHERE u.id = :id")
 //    public Set<Privilege> getUserRolesByUserId(@Param("id") long id);
-
+    //public Set<Privilege> getUserRolesByUserId(@Param("id") long id);
 
 
 

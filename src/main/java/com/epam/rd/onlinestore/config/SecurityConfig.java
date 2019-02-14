@@ -31,7 +31,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .authorizeRequests()
 //                .antMatchers("/", "/header.html", "/footer.html", "/images/*",
 //                        "/css/*", "/js/*", "/fragments/*", "/products/search*", "/registration").permitAll()
-                .antMatchers("/", "/header.html", "/footer.html", "/images/*", "/cart/*", "/cart/**",
+                .antMatchers("/", "/header.html", "/footer.html", "/images/*", "/cart/*", "/cart/**", "/users/*", "/users/**", "/users*",
                         "/css/*", "/js/*", "/fragments/*", "/products/search*", "/registration").permitAll()
                 .anyRequest().authenticated();
         http
@@ -57,6 +57,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //    @Bean
     public PasswordEncoder encoder() {
         return new BCryptPasswordEncoder(11);
+    }
+
+    @Autowired
+    public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(userDetailsService);
     }
 
 }

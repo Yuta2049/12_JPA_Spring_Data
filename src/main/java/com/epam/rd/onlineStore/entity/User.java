@@ -1,8 +1,5 @@
 package com.epam.rd.onlinestore.entity;
 
-
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 import javax.persistence.*;
@@ -10,10 +7,12 @@ import java.io.Serializable;
 import java.util.*;
 
 @Entity
-@Table(name = "user")
+@Table(name = "user", schema = "onlinestorerd", catalog = "")
 public class User extends AbstractPersistable<Long> implements Serializable {
 
     @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @Column(name = "id")
     private Long id;
 
     @Column(name = "username", unique = true, nullable = false, length = 45)
@@ -23,11 +22,14 @@ public class User extends AbstractPersistable<Long> implements Serializable {
     @Column(name = "passwordhash", nullable = false, length = 60)
     private String passwordhash;
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinTable(name="users_roles", //catalog = "onlinestorerd",
-        joinColumns = @JoinColumn(name="user_id", referencedColumnName="id"),
-        inverseJoinColumns = @JoinColumn(name="role_id", referencedColumnName="id"))
-    private Set<Privilege> privileges = new HashSet<>();
+    //@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = {CascadeType.ALL, CascadeType.PERSIST})
+    @JoinTable(name="users_roles", schema = "onlinestorerd", catalog = "",
+            joinColumns = @JoinColumn(name="user_id"),
+            inverseJoinColumns = @JoinColumn(name="role_id"))
+//        joinColumns = @JoinColumn(name="user_id", referencedColumnName="id"),
+//        inverseJoinColumns = @JoinColumn(name="role_id", referencedColumnName="id"))
+    private Set<Privilege> privileges;// = new HashSet<>();
 
     public User() {
     }
@@ -88,7 +90,7 @@ public class User extends AbstractPersistable<Long> implements Serializable {
         return privileges;
     }
 
-    public void setPrivileges(Set<Privilege> privileges) {
-        this.privileges = privileges;
-    }
+//    public void setPrivileges(Set<Privilege> privileges) {
+//        this.privileges = privileges;
+//    }
 }
