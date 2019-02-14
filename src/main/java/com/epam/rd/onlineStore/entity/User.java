@@ -1,18 +1,20 @@
 package com.epam.rd.onlinestore.entity;
 
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+import org.springframework.data.jpa.domain.AbstractPersistable;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.*;
 
 @Entity
-//@IdClass(Cart.class)
-//@Access(AccessType.FIELD)
-@Table(name = "user",  schema = "onlinestorerd", catalog = "")
-public class User implements Serializable {
+@Table(name = "user")
+public class User extends AbstractPersistable<Long> implements Serializable {
 
     @Id
-    private long id;
+    private Long id;
 
     @Column(name = "username", unique = true, nullable = false, length = 45)
     private String username;
@@ -21,12 +23,11 @@ public class User implements Serializable {
     @Column(name = "passwordhash", nullable = false, length = 60)
     private String passwordhash;
 
-////    @ElementCollection(targetClass=Privilege.class)
-    @ManyToMany(cascade = CascadeType.MERGE, fetch = FetchType.EAGER)
-    @JoinTable(name="users_roles",
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name="users_roles", //catalog = "onlinestorerd",
         joinColumns = @JoinColumn(name="user_id", referencedColumnName="id"),
         inverseJoinColumns = @JoinColumn(name="role_id", referencedColumnName="id"))
-    private Set<Privilege> privileges;// = new HashSet<Privilege>(0);
+    private Set<Privilege> privileges = new HashSet<>();
 
     public User() {
     }
@@ -38,7 +39,7 @@ public class User implements Serializable {
         this.privileges = privileges;
     }
 
-    public long getId() {
+    public Long getId() {
         return id;
     }
 

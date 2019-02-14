@@ -1,10 +1,16 @@
 package com.epam.rd.onlinestore.dao;
 
+import com.epam.rd.onlinestore.entity.Privilege;
 import com.epam.rd.onlinestore.entity.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Set;
+
+import static org.hibernate.hql.internal.antlr.HqlTokenTypes.FROM;
 
 @Repository
 public interface UserDAO extends JpaRepository<User, Long> {
@@ -33,9 +39,24 @@ public interface UserDAO extends JpaRepository<User, Long> {
 //        return userList;
 //    }
 
-    public User findByUsernameAndPasswordhash(String username, String password);
+
+    //@Query("SELECT p FROM Person p JOIN FETCH p.roles WHERE p.id = (:id)")
+//    @Query(value = "select distinct p from Person p left join fetch p.groups")
+    //@Query("value = "SELECT u FROM user u JOIN FETCH u.roles WHERE p.id = (:id)")
+   // @Query("SELECT u FROM User u JOIN FETCH u.roles WHERE u.login = :login")
+    //@Query(value = "select u from User u left join fetch u.role where u.username = :username and u.passwordhash = :passwordhash")
+
+    public User findByUsernameAndPasswordhash(@Param("username") String username, @Param("passwordhash") String password);
 
     public User findByUsername(String username);
+
+
+
+//    @Query("SELECT u.roles FROM User u WHERE u.id = :id")
+////    public Set<Privilege> getUserRolesByUserId(@Param("id") long id);
+//    public Set<Privilege> getUserRolesByUserId(@Param("id") long id);
+
+
 
 
 //    public User findByUsernameAndPassword(String username, String password) {

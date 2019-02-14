@@ -1,5 +1,6 @@
 package com.epam.rd.onlinestore.entity;
 
+import org.hibernate.Hibernate;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,8 +20,16 @@ public class MyUserPrincipal implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-        for (Privilege privilege : user.getPrivileges()) {
+
+        System.out.println("Мы в UserPrincipal");
+        //Hibernate.initialize(user.getPrivileges());
+        //JpaUtils.initialize(em, entity, depth);
+        System.out.println("user.getPrivileges()) "+ user.getPrivileges().size());
+
+//      for (Privilege privilege : user.getPrivileges()) {
+          for (Privilege privilege : user.getPrivileges()) {
             authorities.add(new SimpleGrantedAuthority(privilege.getName()));
+              System.out.println("Vtoroy cirl");
         }
         return authorities;
     }
