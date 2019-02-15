@@ -108,7 +108,7 @@
 
         <!--  Кнопки админа -->
         <!--<button-->
-        <button sec:authorize="hasRole('ROLE_ADMIN')"
+        <button sec:authorize="hasRole('ADMIN')"
                 id="buttonProductNew" class="openCloseAddProduct buttonProductNew">Добавить товар
         </button>
         <!--  Кнопки админа (КОНЕЦ) -->
@@ -121,12 +121,12 @@
 
                 <!--  Кнопки админа -->
                 <!--<input type="image" src="/images/pencil.png"-->
-                <input sec:authorize="hasRole('ROLE_ADMIN')" type="image" src="/images/pencil.png"
+                <input sec:authorize="hasRole('ADMIN')" type="image" src="/images/pencil.png"
                        th:data-product-id="${product.id}"
                        class="openCloseAddProduct buttonProductEdit">
 
                 <!--<input type="image" class="buttonProductDelete"-->
-                <input sec:authorize="hasRole('ROLE_ADMIN')" type="image" class="buttonProductDelete"
+                <input sec:authorize="hasRole('ADMIN')" type="image" class="buttonProductDelete"
                        src="/images/delete.png"
                        th:data-product-id="${product.id}">
                 <!--  Кнопки админа (КОНЕЦ) -->
