@@ -1,6 +1,8 @@
 package com.epam.rd.onlinestore.entity;
 
 import org.springframework.data.jpa.domain.AbstractPersistable;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -8,7 +10,7 @@ import java.util.*;
 
 @Entity
 @Table(name = "user", schema = "onlinestorerd", catalog = "")
-public class User extends AbstractPersistable<Long> implements Serializable {
+public class User extends AbstractPersistable<Long> implements Serializable, UserDetails {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -18,7 +20,6 @@ public class User extends AbstractPersistable<Long> implements Serializable {
     @Column(name = "username", unique = true, nullable = false, length = 45)
     private String username;
 
-//    @Column(name = "\"passwordHash\"")
     @Column(name = "passwordhash", nullable = false, length = 60)
     private String passwordhash;
 
@@ -49,10 +50,6 @@ public class User extends AbstractPersistable<Long> implements Serializable {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
     public void setUsername(String username) {
         this.username = username;
     }
@@ -65,32 +62,48 @@ public class User extends AbstractPersistable<Long> implements Serializable {
         this.passwordhash = password;
     }
 
-
-//    //@ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-//    @ManyToMany
-//    @JoinTable(name = "user_roles",
-//            //foreign key for EmployeeEntity in employee_car table
-//            //joinColumns = @JoinColumn(name = "employee_id"),
-//            joinColumns = @JoinColumn(name = "user_id"),
-//            //foreign key for other side - EmployeeEntity in employee_car table
-//            //inverseJoinColumns = @JoinColumn(name = "car_id"))
-//            inverseJoinColumns = @JoinColumn(name = "role_id"))
-//    @Transactional
-    //@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
-//@ManyToMany(cascade = CascadeType.ALL)
-////    @JoinTable(name = "users_roles",
-////            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
-////            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
-//@JoinTable(name = "users_roles",
-//        joinColumns = @JoinColumn(name = "user_id"),
-//        inverseJoinColumns = @JoinColumn(name = "role_id"))
-//    @ManyToMany //(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-//    @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     public Set<Privilege> getPrivileges() {
         return privileges;
     }
 
-//    public void setPrivileges(Set<Privilege> privileges) {
-//        this.privileges = privileges;
-//    }
+    public void setPrivileges(Set<Privilege> privileges) {
+        this.privileges = privileges;
+    }
+
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return privileges;
+    }
+
+    @Override
+    public String getPassword() {
+        return getPasswordHash();
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+
 }

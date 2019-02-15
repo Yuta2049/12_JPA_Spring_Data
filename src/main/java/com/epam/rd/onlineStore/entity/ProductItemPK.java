@@ -15,7 +15,6 @@ public class ProductItemPK implements Serializable {
         this.product = product;
     }
 
-
     public Cart getCart() {
         return cart;
     }

@@ -12,7 +12,7 @@ import java.io.Serializable;
 //@Embeddable
 //@IdClass(ProductItem.PK.class)
 @IdClass(ProductItemPK.class)
-public class ProductItem implements Serializable {
+public class CartProductItem implements Serializable {
 
     @EmbeddedId
     //@Id
@@ -34,14 +34,13 @@ public class ProductItem implements Serializable {
     private Cart cart;
 
 
-    public ProductItem() {
+    public CartProductItem() {
     }
 
-    public ProductItem(Cart cart, Product product, int quantity) {
+    public CartProductItem(Cart cart, Product product, int quantity) {
         this.cart = cart;
         this.product = product;
         this.quantity = quantity;
-
     }
 
 
