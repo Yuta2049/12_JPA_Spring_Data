@@ -3,10 +3,11 @@ package com.epam.rd.onlinestore.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "order_product_list")
-public class OrderProductItem {
+public class OrderProductItem implements Serializable {
 
     @EmbeddedId
     @ManyToOne
@@ -19,12 +20,16 @@ public class OrderProductItem {
 
     @EmbeddedId
     @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
-    @JoinColumn(name = "order_id", nullable = false)
+    @JoinColumn(name = "order_id", nullable = false, referencedColumnName = "id")
     @JsonIgnore
-    private Order order;
+    private ClientOrder clientOrder;
 
+    public OrderProductItem() {
+    }
 
-
-
-
+    public OrderProductItem(ClientOrder clientOrder, Product product, int quantity) {
+        this.clientOrder = clientOrder;
+        this.product = product;
+        this.quantity = quantity;
+    }
 }

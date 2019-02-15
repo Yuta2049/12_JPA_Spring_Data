@@ -141,13 +141,38 @@ function calcAmount() {
 // Очистить корзину (оформить заказ)
 //$('#emptyCart').click(function () {
 $('#registerOrder').click(function () {
-  itemCount = 0;
-  //priceTotal = 0;
-  $('#itemCount').css('display', 'none');
-  $('#cartItems').text('');
-  //$('#cartTotal').text("Total: €" + priceTotal);
+//  itemCount = 0;
+//  $('#itemCount').css('display', 'none');
+//  $('#cartItems').text('');
+//
+//  calcAmount();
 
-  calcAmount();
+
+      var token = $('#_csrf').attr('content');
+      var header = $('#_csrf_header').attr('content');
+
+      var productId = this.dataset.productId;
+
+      url = '/orders/add';
+
+          $.ajax({
+              contentType: 'application/json',
+              url : url,
+              type : "PUT",
+              dataType: 'json',
+              beforeSend: function (xhr) {
+                  xhr.setRequestHeader(header, token);
+              },
+              success : function(data) {
+                  //location.reload();
+              },
+              error : function() {
+                  alert('add order not successful');
+              }
+          });
+
+
+
 
 });
 

@@ -1,13 +1,13 @@
 package com.epam.rd.onlinestore.service;
 
-import com.epam.rd.onlinestore.entity.Order;
+import com.epam.rd.onlinestore.entity.ClientOrder;
 
 import java.util.List;
 
 public interface OrderService {
 
-    public List<Order> findAll();
+    public List<ClientOrder> findAll();
 
-    public Order save();
+    public ClientOrder save();
 
 }
