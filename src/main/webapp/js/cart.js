@@ -3,24 +3,107 @@ var priceTotal = 0;
 
 $('.openCloseCart').on('click', function() {
     $('#shoppingCart').toggle();
+
+//        if (findText != '') {
+
+            var token = $('#_csrf').attr('content');
+            var header = $('#_csrf_header').attr('content');
+
+                $.ajax({
+                    url : "/cart",
+                    type : "get",
+                    //data : {
+                    //    "productName" : findText
+                    //},
+                    beforeSend: function (xhr) {
+                        xhr.setRequestHeader(header, token);
+                    },
+                    success : function(data) {
+                        showProductsInTheCart(data);
+                    },
+                    error : function() {
+                        alert("There was an error");
+                    }
+                });
+//            }
+
+
 })
+
+
+    function showProductsInTheCart(filteredProducts) {
+
+        var searchItemsDiv = document.getElementById('cartItems');
+        $("#cartItems").empty();
+        //var textCat = '<ul class="products">';
+        //searchItemsDiv.insertAdjacentHTML('beforeEnd', textCat);
+
+        for(var i = 0; i < filteredProducts.length; i++) {
+
+            //var text = '<li class="product">';
+            var text = '<div class="hiddenSection" data-roduct-id="'+filteredProducts[i].product.id+'">';
+            text += '<div class="image">';
+            text += '<img src="images/' + filteredProducts[i].product.image + '">';
+            text += '</div>';
+            text += '<div class="productName">';
+            text += filteredProducts[i].product.name;
+            text += '</div>';
+
+            text += '<div class="price">';
+            text += filteredProducts[i].product.price;
+            text += '</div>';
+
+            text += '<button class="removeItem">X</button>';
+
+            //text += '</li>';
+            text += '</div>';
+
+            searchItemsDiv.insertAdjacentHTML('beforeEnd', text);
+        }
+
+        //textCat = '</ul>';
+
+        //searchItemsDiv.insertAdjacentHTML('beforeEnd', textCat);
+    }
 
 
 // Добавляем товары в корзину
 $('.add').click(function () {
 
-  itemCount++;
+//  itemCount++;
+//
+//  $('#itemCount').text(itemCount).css('display', 'block');
+//  $(this).parent().clone().removeAttr('onclick').appendTo('#cartItems').append('<button class="removeItem">X</button>');
+//
+//  $('#cartItems').find('.add').remove();
+//  $('#cartItems').find('*').removeAttr("id style");
+//
+//  $('#cartItems').find('.hiddenSection').show();
+//
+//  calcAmount();
 
-  $('#itemCount').text(itemCount).css('display', 'block');
-  $(this).parent().clone().removeAttr('onclick').appendTo('#cartItems').append('<button class="removeItem">X</button>');
+    var token = $('#_csrf').attr('content');
+    var header = $('#_csrf_header').attr('content');
 
-  $('#cartItems').find('.add').remove();
-  $('#cartItems').find('*').removeAttr("id style");
+    var productId = this.dataset.productId;
 
-  $('#cartItems').find('.hiddenSection').show();
+    url = '/cart/add/'+productId;
 
-  calcAmount();
-
+        $.ajax({
+            contentType: 'application/json',
+            url : url,
+            type : "PUT",
+            dataType: 'json',
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader(header, token);
+            },
+            success : function(data) {
+                //location.reload();
+            },
+            error : function() {
+                alert('add to cart not successful');
+            }
+        });
 });
 
 

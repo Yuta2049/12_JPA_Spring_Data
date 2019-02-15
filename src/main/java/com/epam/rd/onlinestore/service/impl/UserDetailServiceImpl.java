@@ -1,7 +1,6 @@
 package com.epam.rd.onlinestore.service.impl;
 
 import com.epam.rd.onlinestore.dao.UserDAO;
-import com.epam.rd.onlinestore.entity.MyUserPrincipal;
 import com.epam.rd.onlinestore.entity.Privilege;
 import com.epam.rd.onlinestore.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,21 +33,37 @@ public class UserDetailServiceImpl implements UserDetailsService {
     @Transactional(readOnly = false, propagation = Propagation.REQUIRES_NEW)
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
+//        UserDetails loadedUser;
+//
+//        try {
+//            User client = userDAO.findByUsername(username);
+//            loadedUser = new org.springframework.security.core.userdetails.User(
+//                    client.getUsername(), client.getPasswordHash(),
+//                    client.getPrivileges());
+//        } catch (Exception repositoryProblem) {
+//            throw new InternalAuthenticationServiceException(repositoryProblem.getMessage(), repositoryProblem);
+//        }
+//
+//        return loadedUser;
 
-        UserDetails loadedUser;
-        try {
-            User client = userDAO.findByUsername(username);
-            loadedUser = new org.springframework.security.core.userdetails.User(
-                    client.getUsername(), client.getPasswordHash(),
-                    client.getPrivileges());
-        } catch (Exception repositoryProblem) {
-            throw new InternalAuthenticationServiceException(repositoryProblem.getMessage(), repositoryProblem);
+        User user = userDAO.findByUsername(username);
+        if (user == null){
+            throw new UsernameNotFoundException("Invalid username or password.");
         }
 
-        System.out.println("authorities = "+loadedUser.getAuthorities().size());
 
-        return loadedUser;
-        //return new MyUserPrincipal(loadedUser);
+        Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
+        for (Privilege role : user.getPrivileges()){
+            grantedAuthorities.add(new SimpleGrantedAuthority(role.getName()));
+        }
+
+//        return new org.springframework.security.core.userdetails.User(user.getUsername(),
+//                user.getPassword(),
+//                mapRolesToAuthorities(user.getPrivileges()));
+
+        return user;
+
+
 
 //    }
 
@@ -90,11 +105,11 @@ public class UserDetailServiceImpl implements UserDetailsService {
     }
 
 
-    private Set<? extends GrantedAuthority> mapRolesToAuthorities(Set<Privilege> roles){
-        return roles.stream()
-                .map(role -> new SimpleGrantedAuthority(role.getName()))
-                .collect(Collectors.toSet());
-    }
+//    private Set<? extends GrantedAuthority> mapRolesToAuthorities(Set<Privilege> roles){
+//        return roles.stream()
+//                .map(role -> new SimpleGrantedAuthority(role.getName()))
+//                .collect(Collectors.toSet());
+//    }
 
 
 

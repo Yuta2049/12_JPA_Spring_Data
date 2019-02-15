@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -13,6 +14,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
+//@EnableGlobalMethodSecurity(securedEnabled = true)
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -29,10 +32,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //        http.csrf().disable().authorizeRequests().anyRequest().permitAll();
         http
             .authorizeRequests()
-//                .antMatchers("/", "/header.html", "/footer.html", "/images/*",
-//                        "/css/*", "/js/*", "/fragments/*", "/products/search*", "/registration").permitAll()
-                .antMatchers("/", "/header.html", "/footer.html", "/images/*", "/cart/*", "/cart/**", "/users/*", "/users/**", "/users*",
+                .antMatchers("/", "/header.html", "/footer.html", "/images/*",
                         "/css/*", "/js/*", "/fragments/*", "/products/search*", "/registration").permitAll()
+//                .antMatchers("/", "/header.html", "/footer.html", "/images/*", "/cart/*", "/cart/**", "/users/*", "/users/**", "/users*",
+//                        "/css/*", "/js/*", "/fragments/*", "/products/search*", "/registration").permitAll()
                 .anyRequest().authenticated();
         http
 //            .formLogin()

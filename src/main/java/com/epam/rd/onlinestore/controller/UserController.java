@@ -4,6 +4,7 @@ import com.epam.rd.onlinestore.dao.UserDAO;
 import com.epam.rd.onlinestore.entity.User;
 import com.epam.rd.onlinestore.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -27,14 +28,9 @@ public class UserController {
     }
 
 
-//    @ResponseBody
-//    @GetMapping("/users/{username}")
-//    public User getUserByUsername(@PathVariable("username") String username) {
-//        return userDAO.findByUsername(username);
-//    }
-
     @ResponseBody
     @GetMapping("/users/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public User getUser(@PathVariable("id") Long id)
     {
         //return userService.findOne(id);
@@ -44,6 +40,7 @@ public class UserController {
 
     @ResponseBody
     @GetMapping("/users")
+    @PreAuthorize("hasRole('ADMIN')")
     public List<User> getUsers()
     {
         List<User> result = new ArrayList<>();
