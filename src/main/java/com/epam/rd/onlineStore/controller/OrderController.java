@@ -1,6 +1,7 @@
 package com.epam.rd.onlinestore.controller;
 
 import com.epam.rd.onlinestore.entity.ClientOrder;
+import com.epam.rd.onlinestore.service.CartService;
 import com.epam.rd.onlinestore.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +16,8 @@ public class OrderController {
     @Autowired
     private OrderService orderService;
 
+    @Autowired
+    private CartService cartService;
 
     @GetMapping("/orders")
     public List<ClientOrder> findAllOrders(){
@@ -23,7 +26,9 @@ public class OrderController {
 
     @PutMapping("/orders/add")
     public ClientOrder AddOrder(){
-        return orderService.save();
+        //return orderService.save();
+        orderService.save();
+        cartService.deleteProductsByUserID();
     }
 
 

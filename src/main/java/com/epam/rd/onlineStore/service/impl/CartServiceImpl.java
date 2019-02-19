@@ -52,4 +52,14 @@ public class CartServiceImpl implements CartService {
         cart.setCartProductItemList(cartProductItemList);
         return cartDAO.save(cart);
     }
+
+    @Override
+    public Cart deleteProductsFromCart(long userId) {
+
+        Cart cart = findById(idCart);
+        List<CartProductItem> cartProductItemList = cart.getCart
+
+        return cartDAO.save(cart);
+    }
+
 }

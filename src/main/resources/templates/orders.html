@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Интернет-магазин "АВРОРА". Самый большой выбор звездолетов и планетарных станций в 9 вселенных. В наличии и
+        под заказ</title>
+
+    <link rel="stylesheet" href="css/style.css" type="text/css">
+
+    <script type="text/javascript" src="js/jquery-3.3.1.min.js"></script>
+
+    <link rel="shortcut icon" href="images/favicon.ico"/>
+
+    <meta id="_csrf" name="_csrf" th:content="${_csrf.token}"/>
+    <meta id="_csrf_header" name="_csrf_header" th:content="${_csrf.headerName}"/>
+
+</head>
+
+<body>
+
+<div id="header">
+</div>
+
+<div id="main" class="main">
+
+    <!--<div id="shoppingCart">-->
+        <!--<div id="cartItemsContainer">-->
+            <!--<h1>Корзина</h1>-->
+            <!--<b class="openCloseCart" aria-hidden="true">x</b>-->
+            <!--<div id="cartItems"></div>-->
+            <!--<div>Сумма товаров:-->
+                <!--<span id="productsAmount"></span>-->
+            <!--</div>-->
+            <!--<div>Скидка:-->
+                <!--<span id="discountSize"></span>%-->
+                <!--<span id="discountAmount"></span>-->
+            <!--</div>-->
+            <!--<div>Итого:-->
+                <!--<span id="productsTotal"></span>-->
+            <!--</div>-->
+            <!--<button id="registerOrder">Оформить заказ</button>-->
+        <!--</div>-->
+    <!--</div>-->
+
+    <!--<div id="searchWindow">-->
+        <!--<div id="searchItemsContainer">-->
+            <!--<h1>Поиск</h1>-->
+            <!--<b class="openCloseSearch" aria-hidden="true">x</b>-->
+            <!--Найти:-->
+            <!--<input id="findText">-->
+            <!--<button id="findProducts">Найти</button>-->
+            <!--<div id="searchItems"></div>-->
+        <!--</div>-->
+    <!--</div>-->
+
+
+    <!--<div id="AddProductWindow">-->
+        <!--<div id="AddProductContainer">-->
+            <!--<h1>Товар</h1>-->
+            <!--<b class="openCloseAddProduct" aria-hidden="true">x</b>-->
+            <!--<div id="ProductWindow">-->
+
+                <!--<form id="ProductSave" method="put">-->
+
+                    <!--<input id="editProductId" required type="hidden" name="id" placeholder="Id">-->
+
+                    <!--<label>Наименование:</label>-->
+                    <!--<input id="editProductName" required type="text" name="name" placeholder="Наименование"><br/>-->
+
+                    <!--<label>Цена:</label>-->
+                    <!--<input id="editProductPrice" required type="text" name="price" placeholder="Цена"><br/>-->
+
+                    <!--<label>Категория id:</label>-->
+                    <!--<input id="editProductCategoryId" required type="text" name="category" placeholder="Категория id"><br/>-->
+
+                    <!--<label>Категория name:</label>-->
+                    <!--<input id="editProductCategoryName" required type="text" name="category" placeholder="Категория name"><br/>-->
+
+                    <!--<label>Картинка:</label>-->
+                    <!--<input id="editProductImage" required type="text" name="image" placeholder="Картинка"><br/>-->
+
+                    <!--&lt;!&ndash;<button class="editProductSave"&ndash;&gt;-->
+                    <!--&lt;!&ndash;type="submit">Сохранить товар&ndash;&gt;-->
+                    <!--&lt;!&ndash;</button>&ndash;&gt;-->
+
+                    <!--<input type="button" id="newProductSave" value="Добавить товар">-->
+
+                    <!--<input type="button" id="editProductSave" value="Сохранить товар">-->
+
+                <!--</form>-->
+
+            <!--</div>-->
+
+        <!--</div>-->
+    <!--</div>-->
+
+
+    <!--<ul th:each="order : ${orders}">-->
+    <ul>
+
+        <li class="product" th:each="order : ${orders}">
+            ${order.id}
+            ${order.date}
+            ${order.user}
+        </li>
+
+    </ul>
+
+
+
+
+
+
+    <!--&lt;!&ndash;c:forEach items="${categories}" var="category"&ndash;&gt;-->
+    <!--<div th:each="category : ${categories}">-->
+
+        <!--<div class="category">-->
+            <!--<H2 th:text=${category.name}></H2>-->
+            <!--<hr>-->
+        <!--</div>-->
+
+        <!--&lt;!&ndash;  Кнопки админа &ndash;&gt;-->
+        <!--&lt;!&ndash;<button&ndash;&gt;-->
+        <!--<button sec:authorize="hasRole('ADMIN')"-->
+                <!--id="buttonProductNew" class="openCloseAddProduct buttonProductNew">Добавить товар-->
+        <!--</button>-->
+        <!--&lt;!&ndash;  Кнопки админа (КОНЕЦ) &ndash;&gt;-->
+
+        <!--<ul class="products">-->
+
+            <!--&lt;!&ndash;<li class="product" th:each="product : ${products}" th:if="${category.id==product.category}"&ndash;&gt;-->
+            <!--<li class="product" th:each="product : ${products}" th:if="${category==product.category}"-->
+                <!--th:id="@{'a'+${product.id}}">-->
+
+                <!--&lt;!&ndash;  Кнопки админа &ndash;&gt;-->
+                <!--&lt;!&ndash;<input type="image" src="/images/pencil.png"&ndash;&gt;-->
+                <!--<input sec:authorize="hasRole('ADMIN')" type="image" src="/images/pencil.png"-->
+                       <!--th:data-product-id="${product.id}"-->
+                       <!--class="openCloseAddProduct buttonProductEdit">-->
+
+                <!--&lt;!&ndash;<input type="image" class="buttonProductDelete"&ndash;&gt;-->
+                <!--<input sec:authorize="hasRole('ADMIN')" type="image" class="buttonProductDelete"-->
+                       <!--src="/images/delete.png"-->
+                       <!--th:data-product-id="${product.id}">-->
+                <!--&lt;!&ndash;  Кнопки админа (КОНЕЦ) &ndash;&gt;-->
+
+                <!--<div class="visibleSection" th:id="@{'b'+${product.id}}" th:data-product-id=${product.id}>-->
+
+                    <!--<div class="image">-->
+                        <!--<img th:src="@{'images/'+${product.image}}">-->
+                    <!--</div>-->
+
+                    <!--<div class="productName" th:text=${product.name}>-->
+                    <!--</div>-->
+                <!--</div>-->
+
+                <!--<div class="hiddenSection" th:id="@{'c'+${product.id}}" th:data-product-id=${product.id}>-->
+
+                    <!--<div class="image">-->
+                        <!--<img th:src="@{'images/'+${product.image}}">-->
+                    <!--</div>-->
+
+
+                    <!--<div class="price" th:text=${product.price}>-->
+                    <!--</div>-->
+
+                    <!--<button class="add" th:data-product-id=${product.id}>Да, я хочу этот корабль!</button>-->
+
+                <!--</div>-->
+
+            <!--</li>-->
+
+        <!--</ul>-->
+
+    </div>
+
+<!--</ul>-->
+
+<div id="footer">
+</div>
+
+<script src="js/init.js"></script>
+
+</body>
+
+</html>
