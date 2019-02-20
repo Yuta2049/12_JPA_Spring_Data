@@ -379,3 +379,13 @@ label {
 	text-decoration: none;
 	cursor: pointer;
 }
+
+
+table {
+    text-align: left;
+    width: 100%;
+}
+
+td, th {
+    padding: 2vw;
+}

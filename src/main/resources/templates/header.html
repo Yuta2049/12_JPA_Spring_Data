@@ -3,6 +3,9 @@
     <li>
         <a href="/"><img src="images/Aurora_logo.png" style="width: 180px;"></a>
     </li>
+    <li sec:authorize="isAuthenticated()" id="orders">
+        <a href="orders">Заказы</a>
+    </li>
     <li sec:authorize="!isAuthenticated()" id="login">
         <a href="login">Авторизация</a>
     </li>
