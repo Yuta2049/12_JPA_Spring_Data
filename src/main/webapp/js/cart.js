@@ -40,7 +40,6 @@ $('.openCloseCart').on('click', function() {
 
         for(var i = 0; i < filteredProducts.length; i++) {
 
-            //var text = '<li class="product">';
             var text = '<div class="hiddenSection" data-roduct-id="'+filteredProducts[i].product.id+'">';
             text += '<div class="image">';
             text += '<img src="images/' + filteredProducts[i].product.image + '">';
@@ -53,9 +52,12 @@ $('.openCloseCart').on('click', function() {
             text += filteredProducts[i].product.price;
             text += '</div>';
 
+            text += '<div>';
+            text += filteredProducts[i].quantity;
+            text += '</div>';
+
             text += '<button class="removeItem">X</button>';
 
-            //text += '</li>';
             text += '</div>';
 
             searchItemsDiv.insertAdjacentHTML('beforeEnd', text);
