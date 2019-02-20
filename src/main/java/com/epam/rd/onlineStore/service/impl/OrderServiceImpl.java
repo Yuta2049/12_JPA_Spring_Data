@@ -36,21 +36,16 @@ public class OrderServiceImpl implements OrderService {
             User user = (User) auth.getPrincipal();
             if (user != null) {
                 Cart cart = cartService.findByUserId(user.getId());
-                if (cart != null) {
-                    //return cart.getCartProductItemList();
-
+                if (cart != null && cart.getCartProductItemList().size() > 0) {
                     ClientOrder clientOrder = new ClientOrder();
                     clientOrder.setDate(LocalDate.now());
                     clientOrder.setUser(user);
                     clientOrder.setOrderProductItemListFromCartProductItemList(cart.getCartProductItemList());
 
                     return orderDAO.save(clientOrder);
-
                 }
             }
         }
-
-
         return null;
     }
 }

@@ -21,18 +21,8 @@ public class CartController {
     private CartService cartService;
 
     @GetMapping("/cart")
-    public List<CartProductItem> getProductInTheCart() {
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth != null) {
-            User user = (User) auth.getPrincipal();
-            if (user != null) {
-                Cart cart = cartService.findByUserId(user.getId());
-                if (cart != null) {
-                    return cart.getCartProductItemList();
-                }
-            }
-        }
-        return null;
+    public List<CartProductItem> getProductInTheCartForCurrentUser() {
+        return cartService.getCartForCurrentUser().getCartProductItemList();
     }
 
 

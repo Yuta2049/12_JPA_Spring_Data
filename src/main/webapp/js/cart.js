@@ -40,7 +40,7 @@ $('.openCloseCart').on('click', function() {
 
         for(var i = 0; i < filteredProducts.length; i++) {
 
-            var text = '<div class="hiddenSection" data-roduct-id="'+filteredProducts[i].product.id+'">';
+            var text = '<div class="hiddenSection" data-product-id="'+filteredProducts[i].product.id+'">';
             text += '<div class="image">';
             text += '<img src="images/' + filteredProducts[i].product.image + '">';
             text += '</div>';
@@ -52,9 +52,13 @@ $('.openCloseCart').on('click', function() {
             text += filteredProducts[i].product.price;
             text += '</div>';
 
+            text += '<button class="decreaseQuantity" data-product-id="'+filteredProducts[i].product.id+'">-</button>';
+
             text += '<div>';
             text += filteredProducts[i].quantity;
             text += '</div>';
+
+            text += '<button class="increaseQuantity" data-product-id="'+filteredProducts[i].product.id+'">+</button>';
 
             text += '<button class="removeItem">X</button>';
 
@@ -107,6 +111,77 @@ $('.add').click(function () {
             }
         });
 });
+
+
+
+// Увеличить количество в корзине
+//$('.increaseQuantity').click(function () {
+$('#shoppingCart').on('click', '.increaseQuantity', function () {
+
+    var token = $('#_csrf').attr('content');
+    var header = $('#_csrf_header').attr('content');
+
+    var productId = this.dataset.productId;
+
+    console.log(this.dataset.productId);
+    //console.log(this.previousSibling);
+    //console.log(this.previousSibling.text);
+    console.log(this.previousSibling.textContent);
+    var quantityElem = this.previousSibling;
+    //alert(productId);
+
+    url = '/cart/add/'+productId;
+
+        $.ajax({
+            contentType: 'application/json',
+            url : url,
+            type : "PUT",
+            dataType: 'json',
+            beforeSend: function (xhr) {
+                xhr.setRequestHeader(header, token);
+            },
+            success : function(data) {
+                //location.reload();
+                //$(this).parent().remove();
+
+                //console.log(this.dataset.productId);
+                //console.log(quantityElem.textContent);
+
+//                console.log(this);
+//                console.log($(this));
+//                console.log(this.previousSibling);
+//                console.log($(this).previousSibling);
+//                console.log($(this).previousSibling.text());
+
+                //var quantity = parseInt(this.previousSibling.);
+                var quantity = quantityElem.textContent;
+                console.log(quantity);
+//                console.log(quantity);
+//                console.log(++quantity);
+
+                //$(this).previousSibling().text(++quantity);
+
+
+                itemCount++;
+                $('#itemCount').text(itemCount);
+//              calcAmount();
+            },
+            error : function() {
+                alert('add to cart not successful');
+            }
+        });
+});
+
+// Уменьшить количество в корзине
+//$('.decreaseQuantity').click(function () {
+$('#shoppingCart').on('click', '.decreaseQuantity', function () {
+
+    alert("BU2");
+
+});
+
+
+
 
 
 // Пересчитываем сумму заказа

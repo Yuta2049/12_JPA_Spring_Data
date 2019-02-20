@@ -8,8 +8,10 @@ public interface CartService {
 
     Cart findById(long id);
 
+    Cart getCartForCurrentUser();
+
     Cart addProductToCart(long id, long productId);
 
-    Cart deleteProductsByUserId(long userId);
+    Cart emptyProductsForCurrentUser();
 
 }
