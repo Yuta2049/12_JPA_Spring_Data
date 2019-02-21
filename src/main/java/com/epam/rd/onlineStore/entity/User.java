@@ -1,8 +1,11 @@
 package com.epam.rd.onlinestore.entity;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
@@ -69,7 +72,7 @@ public class User extends AbstractPersistable<Long> implements Serializable, Use
     }
 
     public void setPassword(String password) {
-        this.passwordhash = password;
+        this.passwordhash = new BCryptPasswordEncoder().encode(password);
     }
 
     public Set<Privilege> getPrivileges() {

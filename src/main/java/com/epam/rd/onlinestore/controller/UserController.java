@@ -36,7 +36,7 @@ public class UserController {
         if (result.hasErrors()) {
             return "redirect:/";
         } else {
-            this.userService.save(user);
+            this.userService.addNewUser(user);
             return "redirect:/";
         }
     }

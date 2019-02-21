@@ -18,5 +18,7 @@ public interface UserService {
     User findById(long id);
 
     User save(User user);
+
+    User addNewUser(User user);
 }
 
