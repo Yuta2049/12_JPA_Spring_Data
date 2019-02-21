@@ -45,6 +45,12 @@ public class UserServiceImpl implements UserService {
         return userDAO.findById(id);
     }
 
+    @Override
+    public User save(User user) {
+        return userDAO.save(user);
+    }
+
+
 //    //@Query("SELECT u.privileges FROM User u WHERE u.id = :id")
 //    public Set<Privilege> getUserRolesByUserId(long id) {
 //        return userDAO.getUserRolesByUserId(id);

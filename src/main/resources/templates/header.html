@@ -1,20 +1,20 @@
 
 <ul id="menu" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
     <li>
-        <a href="/"><img src="images/Aurora_logo.png" style="width: 180px;"></a>
+        <a href="/"><img src="/images/Aurora_logo.png" style="width: 180px;"></a>
     </li>
     <li sec:authorize="isAuthenticated()" id="orders">
-        <a href="orders">Заказы</a>
+        <a href="/orders">Заказы</a>
     </li>
     <li sec:authorize="!isAuthenticated()" id="login">
-        <a href="login">Авторизация</a>
+        <a href="/login">Авторизация</a>
     </li>
     <li sec:authorize="isAuthenticated()" sec:authentication="name" id="userName"></li>
     <li sec:authorize="isAuthenticated()" id="logout">
-        <a href="logout">Выход</a>
+        <a href="/logout">Выход</a>
     </li>
     <li id="registration">
-        <a href="registration">Регистрация</a>
+        <a href="/users/registration">Регистрация</a>
     </li>
 </ul>
 
@@ -31,8 +31,8 @@
     <button class="openCloseSearch">Поиск...</button>
 </div>
 
-<script src="js/cart.js"></script>
+<script src="/js/cart.js"></script>
 
-<script src="js/search.js"></script>
+<script src="/js/search.js"></script>
 
-<script src="js/products.js"></script>
+<script src="/js/products.js"></script>

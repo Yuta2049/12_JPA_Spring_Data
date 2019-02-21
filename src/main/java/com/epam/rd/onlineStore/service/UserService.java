@@ -9,12 +9,14 @@ public interface UserService {
 
     List<User> findAll();
 
-    @Transactional
+    //@Transactional
     User findByUsernameAndPassword(String login, String password);
 
-    @Transactional
+    //@Transactional
     User findByUsername(String username);
 
     User findById(long id);
+
+    User save(User user);
 }
 

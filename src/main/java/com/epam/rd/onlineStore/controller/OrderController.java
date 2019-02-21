@@ -5,14 +5,14 @@ import com.epam.rd.onlinestore.entity.ClientOrder;
 import com.epam.rd.onlinestore.service.CartService;
 import com.epam.rd.onlinestore.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
-@RestController
+@Controller
 public class OrderController {
 
     @Autowired
@@ -22,11 +22,15 @@ public class OrderController {
     private CartService cartService;
 
     @GetMapping("/orders")
-    public List<ClientOrder> findAllOrders() {
-        return orderService.findAll();
+    //public List<ClientOrder> findAllOrders() {
+    public String showClientOrders(Map<String, Object> model) {
+        List<ClientOrder> orders = orderService.findAll();
+        model.put("orders", orders);
+        return "orders";
     }
 
     @PutMapping("/orders/add")
+    @ResponseBody
     @Transactional
     public ClientOrder AddOrder() {
         Cart cart = cartService.getCartForCurrentUser();

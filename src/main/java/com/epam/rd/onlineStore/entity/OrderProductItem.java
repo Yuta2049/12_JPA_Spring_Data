@@ -32,4 +32,28 @@ public class OrderProductItem implements Serializable {
         this.product = product;
         this.quantity = quantity;
     }
+
+    public Product getProduct() {
+        return product;
+    }
+
+    public void setProduct(Product product) {
+        this.product = product;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public ClientOrder getClientOrder() {
+        return clientOrder;
+    }
+
+    public void setClientOrder(ClientOrder clientOrder) {
+        this.clientOrder = clientOrder;
+    }
 }

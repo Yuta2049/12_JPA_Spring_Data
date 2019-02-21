@@ -5,6 +5,8 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.*;
 
@@ -12,16 +14,24 @@ import java.util.*;
 @Table(name = "user", schema = "onlinestorerd", catalog = "")
 public class User extends AbstractPersistable<Long> implements Serializable, UserDetails {
 
+//    @NotNull
+//    @NotEmpty
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
+//    @NotNull
+//    @NotEmpty
     @Column(name = "username", unique = true, nullable = false, length = 45)
     private String username;
 
+//    @NotNull
+//    @NotEmpty
     @Column(name = "passwordhash", nullable = false, length = 60)
     private String passwordhash;
+
+    //private String matchingPasswordhash;
 
     //@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @ManyToMany(cascade = {CascadeType.ALL, CascadeType.PERSIST})

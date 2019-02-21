@@ -22,7 +22,7 @@ public class OldProductController {
     @GetMapping("/")
     public String index(Map<String, Object> model)
     {
-         List<Product> products = productService.findAll();
+        List<Product> products = productService.findAll();
         List<Category> categories = categoryService.findAll();
 
         model.put("products", products);

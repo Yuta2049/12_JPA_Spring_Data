@@ -4,7 +4,8 @@
 @font-face{
 
   font-family: 'Neuropol';
-  src: url('../fonts/NEURM___.TTF');
+  /*src: url('../fonts/NEURM___.TTF');*/
+  src: url('/fonts/NEURM___.TTF');
   /*url('../fonts/NEURM___.TTF') format('truetype'),*/
   font-weight: normal;
   font-style: normal;

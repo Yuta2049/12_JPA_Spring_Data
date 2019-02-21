@@ -54,6 +54,8 @@ public interface UserDAO extends JpaRepository<User, Long> {
 
     public User findByUsername(String username);
 
+    public User save(User user);
+
     //public User findOne(long id);
 
 
