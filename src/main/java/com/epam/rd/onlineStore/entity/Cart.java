@@ -6,16 +6,12 @@ import java.io.Serializable;
 import java.util.List;
 
 @Entity
-//@Table(name = "cart", schema = "onlinestorerd", catalog = "")
 @Table(name = "cart")
-//@SecondaryTable(name="cartProductList", schema = "onlinestorerd", catalog = "")
-//@IdClass(ProductItem.class)
-//@Embeddable
 public class Cart implements Serializable {
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
 
     @OneToOne
@@ -55,4 +51,5 @@ public class Cart implements Serializable {
     public void setId(long id) {
         this.id = id;
     }
+
 }

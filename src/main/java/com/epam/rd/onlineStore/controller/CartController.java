@@ -29,14 +29,15 @@ public class CartController {
     @PutMapping(value = "/cart/add/{productId}")
     public Cart addProductToCart(@PathVariable("productId") long productId) {
 
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        if (auth != null) {
-            User user = (User) auth.getPrincipal();
-            if (user != null) {
-                return cartService.addProductToCart(user.getId(), productId);
-            }
-        }
-        return null;
+        return cartService.addProductToCart(productId);
+//        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+//        if (auth != null) {
+//            User user = (User) auth.getPrincipal();
+//            if (user != null) {
+//                return cartService.addProductToCart(user.getId(), productId);
+//            }
+//        }
+//        return null;
     }
 
 }
