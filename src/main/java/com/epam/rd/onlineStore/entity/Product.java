@@ -3,7 +3,6 @@ package com.epam.rd.onlinestore.entity;
 import javax.persistence.*;
 import java.io.Serializable;
 
-//@Component
 @Entity
 @Table(name = "product", schema = "onlinestorerd", catalog = "")
 public class Product implements Serializable {
@@ -35,21 +34,6 @@ public class Product implements Serializable {
     public Product() {
     }
 
-//    public Product(long id, String name, int category, double price, String image) {
-//        this.id = id;
-//        this.name = name;
-//        this.category = category;
-//        this.price = price;
-//        this.image = image;
-//    }
-//
-//    public void generateId(Product product) {
-//        if (product.id == 0) {
-//            product.id = ++maxId;
-//        }
-//    }
-
-
     public long getId() {
         return id;
     }
@@ -57,14 +41,6 @@ public class Product implements Serializable {
     public void setId(long id) {
         this.id = id;
     }
-
-//    public static long getMaxId() {
-//        return maxId;
-//    }
-//
-//    public static void setMaxId(long maxId) {
-//        Product.maxId = maxId;
-//    }
 
     public String getName() {
         return name;
@@ -84,7 +60,6 @@ public class Product implements Serializable {
 
     public Category getCategory() {
         return category;
-        //return 1;
     }
 
     public void setCategory(Category category) {

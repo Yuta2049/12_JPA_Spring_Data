@@ -228,14 +228,14 @@ $('#registerOrder').click(function () {
       var token = $('#_csrf').attr('content');
       var header = $('#_csrf_header').attr('content');
 
-      var productId = this.dataset.productId;
+      //var productId = this.dataset.productId;
 
       url = '/orders/add';
 
           $.ajax({
               contentType: 'application/json',
               url : url,
-              type : "PUT",
+              type : "POST",
               dataType: 'json',
               beforeSend: function (xhr) {
                   xhr.setRequestHeader(header, token);

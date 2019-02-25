@@ -6,6 +6,8 @@ import com.epam.rd.onlinestore.service.impl.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 
 @RestController
 public class ProductRestController {
@@ -41,10 +43,10 @@ public class ProductRestController {
         return this.productService.deleteById(productId);
     }
 
-//    //@RequestMapping("/products/search")
-//    @GetMapping("/products/search")
-//    public List<Product> searchProductsByName(@RequestParam(value = "productName") String productName) {
-//        return this.productService.findByName(productName);
-//    }
+    //@RequestMapping("/products/search")
+    @GetMapping("/products/search")
+    public List<Product> searchProductsByName(@RequestParam(value = "productName") String productName) {
+        return this.productService.findByNameContaining(productName);
+    }
 
 }

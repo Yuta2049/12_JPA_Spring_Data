@@ -14,5 +14,5 @@ public interface ProductService {
 
     boolean deleteById(long id);
 
-    List<Product> findByName(String productName);
+    List<Product> findByNameContaining(String productName);
 }

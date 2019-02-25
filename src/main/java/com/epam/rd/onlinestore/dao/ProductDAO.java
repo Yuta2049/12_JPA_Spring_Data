@@ -46,6 +46,8 @@ public interface ProductDAO extends JpaRepository<Product, Long> {
 //    }
     List<Product> findByName(String productName);
 
+    List<Product> findByNameContaining(String productName);
+
 //
 //    public List<Product> findByPrice(String productPrice) {
 //        return productList.stream().filter(o->String.valueOf(o.getPrice()).contains(productPrice)).collect(Collectors.toList());
